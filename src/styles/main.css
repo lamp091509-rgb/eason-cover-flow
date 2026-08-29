@@ -2,7 +2,7 @@
 :root { color: #eee9df; background: #11110f; font-family: Manrope, sans-serif; font-synthesis: none; }
 body { overflow-x: hidden; background: #11110f; }
 .app-shell { min-height: 100dvh; display: grid; grid-template-rows: auto 1fr auto; padding: 28px 4vw 22px; }
-.topbar, .footer-note { display: flex; align-items: center; justify-content: space-between; color: #8f8a80; font: 11px 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; }
+.topbar, .footer-note { display: flex; align-items: center; justify-content: space-between; color: #8f8a80; font: 11px 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; }.edition-note { color: #b3d36a; }
 .brand { color: #eee9df; margin: 0; }.status { margin: 0; }.status-dot { display: inline-block; width: 6px; height: 6px; margin-right: 8px; border-radius: 50%; background: #b3d36a; box-shadow: 0 0 0 4px #b3d36a1c; }
 .experience { position: relative; min-height: 620px; display: grid; place-items: center; overflow: hidden; }
 .intro { position: absolute; z-index: 2; left: 1vw; top: 12%; pointer-events: none; }.kicker, .track-index { margin: 0 0 18px; color: #b3d36a; font: 11px 'DM Mono', monospace; letter-spacing: .08em; text-transform: uppercase; }.intro h1 { margin: 0; color: #f0ece4; font-size: clamp(36px, 5vw, 72px); font-weight: 500; line-height: .98; letter-spacing: -.05em; }.intro h1 em { color: #b3d36a; font-style: normal; }.hint { margin: 22px 0 0; color: #8f8a80; font-size: 13px; }

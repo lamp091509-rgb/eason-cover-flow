@@ -6,6 +6,9 @@ export class AudioManager {
   }
 
   async play(track) {
+    if (!track.audio) {
+      throw new Error(`No audio is available for ${track.title}.`);
+    }
     if (this.currentId !== track.id) {
       this.audio.pause();
       this.audio.src = track.audio;
