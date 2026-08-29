@@ -11,13 +11,14 @@ export function bindInteraction({ container, camera, renderer, flow, onFocus, on
     pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
   };
-  const start = (event) => { dragging = true; lastX = startX = event.clientX; container.classList.add('is-dragging'); };
+  const start = (event) => { dragging = true; lastX = startX = event.clientX; flow.targetPosition = flow.position; flow.velocity = 0; container.classList.add('is-dragging'); };
   const move = (event) => {
     if (!dragging) return;
     const dx = event.clientX - lastX;
-    flow.position -= dx * 0.006;
-    flow.velocity = -dx * 0.003;
-    flow.position = Math.max(-0.2, Math.min(flow.items.length - 0.8, flow.position));
+    flow.targetPosition -= dx * 0.006;
+    flow.targetPosition = Math.max(0, Math.min(flow.items.length - 1, flow.targetPosition));
+    flow.velocity = -dx * 0.0018;
+    flow.position += (flow.targetPosition - flow.position) * 0.24;
     flow.renderPositions();
     lastX = event.clientX;
   };
@@ -30,7 +31,7 @@ export function bindInteraction({ container, camera, renderer, flow, onFocus, on
       const hit = raycaster.intersectObjects(flow.hitMeshes)[0];
       if (hit) { const target = hit.object.userData.index; target === flow.index ? onFocus(target) : (flow.snapTo(target), onChange()); }
     } else {
-      const target = Math.round(flow.position + flow.velocity * 5);
+      const target = Math.round(flow.targetPosition + flow.velocity * 18);
       flow.snapTo(target, 0.75);
       onChange();
     }
