@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export function bindInteraction({ container, camera, renderer, flow, onFocus, onChange }) {
+export function bindInteraction({ container, camera, renderer, flow, onFocus, onChange, onSelect }) {
   const raycaster = new THREE.Raycaster();
   const pointer = new THREE.Vector2();
   let dragging = false;
@@ -29,7 +29,10 @@ export function bindInteraction({ container, camera, renderer, flow, onFocus, on
     if (moved < 8) {
       updatePointer(event); raycaster.setFromCamera(pointer, camera);
       const hit = raycaster.intersectObjects(flow.hitMeshes)[0];
-      if (hit) { const target = hit.object.userData.index; target === flow.index ? onFocus(target) : (flow.snapTo(target), onChange()); }
+      if (hit) {
+        const target = hit.object.userData.index;
+        target === flow.index ? onFocus(target) : (flow.snapTo(target), onChange(), onSelect(target));
+      }
     } else {
       const target = Math.round(flow.targetPosition + flow.velocity * 18);
       flow.snapTo(target, 0.75);
