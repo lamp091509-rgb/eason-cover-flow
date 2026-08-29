@@ -1,0 +1,24 @@
+import './styles/reset.css';
+import './styles/main.css';
+import { tracks } from './data/tracks.js';
+import { createScene } from './three/scene.js';
+import { CoverFlow } from './three/coverFlow.js';
+import { bindInteraction } from './three/interaction.js';
+import { AudioManager } from './audio/audioManager.js';
+
+const container = document.querySelector('#cover-flow');
+const { scene, camera, renderer } = createScene(container);
+const flow = new CoverFlow(scene, tracks);
+const title = document.querySelector('#track-title');
+const note = document.querySelector('#track-note');
+const indexLabel = document.querySelector('#track-index');
+const counter = document.querySelector('#counter');
+const audioManager = new AudioManager();
+const updateInfo = () => { const track = tracks[flow.index]; title.textContent = track.title; note.textContent = '陈奕迅 · 点击中心封面播放'; indexLabel.textContent = `TRACK ${String(flow.index + 1).padStart(2, '0')}`; counter.textContent = `${String(flow.index + 1).padStart(2, '0')} / ${String(tracks.length).padStart(2, '0')}`; };
+document.querySelector('#previous').addEventListener('click', () => { flow.step(-1); updateInfo(); });
+document.querySelector('#next').addEventListener('click', () => { flow.step(1); updateInfo(); });
+bindInteraction({ container, camera, renderer, flow, onChange: updateInfo, onFocus: async () => { document.body.classList.add('is-focused'); try { await audioManager.toggle(tracks[flow.index]); } catch (error) { console.warn('Audio could not be played.', error); } } });
+window.addEventListener('keydown', (event) => { if (event.key === 'ArrowLeft') flow.step(-1); if (event.key === 'ArrowRight') flow.step(1); updateInfo(); });
+const animate = () => { requestAnimationFrame(animate); flow.tick(); renderer.render(scene, camera); };
+updateInfo();
+animate();

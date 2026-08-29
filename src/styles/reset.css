@@ -1,0 +1,4 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; min-width: 320px; }
+button { font: inherit; }
+body { min-height: 100dvh; }

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#11110f" />
+    <title>Eason Cover Flow</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <p class="brand">EASON / 01</p>
+        <p class="status"><span class="status-dot"></span>Birthday mix</p>
+      </header>
+      <section class="experience" aria-label="音乐封面浏览器">
+        <div class="intro">
+          <p class="kicker">A small collection for a big day</p>
+          <h1>给今天的<br /><em>一首歌</em></h1>
+          <p class="hint">拖动封面，挑一首现在想听的。</p>
+        </div>
+        <div id="cover-flow" class="cover-flow" aria-label="专辑封面"></div>
+        <div class="controls" aria-label="封面控制">
+          <button id="previous" class="icon-button" type="button" aria-label="上一首" title="上一首">←</button>
+          <span id="counter" class="counter">01 / 15</span>
+          <button id="next" class="icon-button" type="button" aria-label="下一首" title="下一首">→</button>
+        </div>
+        <div class="track-info" aria-live="polite">
+          <p id="track-index" class="track-index">TRACK 01</p>
+          <h2 id="track-title">测试封面 01</h2>
+          <p id="track-note">原型素材 · 等待替换</p>
+        </div>
+      </section>
+      <footer class="footer-note"><span>15 covers</span><span>Use ← → or drag</span></footer>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
