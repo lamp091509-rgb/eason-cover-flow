@@ -4,7 +4,7 @@ export const tracks = [
   { id: 'track-03-shinian', title: '十年', note: '陈奕迅 · MP3 音频', cover: '/covers/track-03-shinian.jpeg', audio: '/audio/track-03-shinian.mp3' },
   { id: 'track-04-zuijiasunyou', title: '最佳损友', note: '陈奕迅 · FLAC 音频', cover: '/covers/track-04-zuijiasunyou.jpeg', audio: '/audio/track-04-zuijiasunyou.flac' },
   { id: 'track-05-aishiyibenshu', title: '爱是一本书', note: '陈奕迅 · FLAC 音频', cover: '/covers/track-05-aishiyibenshu.jpeg', audio: '/audio/track-05-aishiyibenshu.flac' },
-  { id: 'track-06-wutiaojian', title: '无条件', note: '陈奕迅 · 暂无音频', cover: '/covers/track-06-wutiaojian.jpeg', audio: null },
+  { id: 'track-06-wutiaojian', title: '无条件', note: '陈奕迅 · MP3 音频', cover: '/covers/track-06-wutiaojian.jpeg', audio: '/audio/track-06-wutiaojian.mp3' },
   { id: 'track-07-shimianmaifu', title: '十面埋伏', note: '陈奕迅 · MP3 音频', cover: '/covers/track-07-shimianmaifu.jpeg', audio: '/audio/track-07-shimianmaifu.mp3' },
   { id: 'track-08-wenwendexingfu', title: '稳稳的幸福', note: '陈奕迅 · MP3 音频', cover: '/covers/track-08-wenwendexingfu.jpeg', audio: '/audio/track-08-wenwendexingfu.mp3' },
   { id: 'track-09-danche', title: '单车', note: '陈奕迅 · MP3 音频', cover: '/covers/track-09-danche.jpeg', audio: '/audio/track-09-danche.mp3' },

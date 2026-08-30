@@ -8,7 +8,7 @@ import { AudioManager } from './audio/audioManager.js';
 
 const container = document.querySelector('#cover-flow');
 const { scene, camera, renderer } = createScene(container);
-const flow = new CoverFlow(scene, tracks);
+const flow = new CoverFlow(scene, tracks, 7);
 const title = document.querySelector('#track-title');
 const note = document.querySelector('#track-note');
 const indexLabel = document.querySelector('#track-index');

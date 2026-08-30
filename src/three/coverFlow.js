@@ -2,12 +2,12 @@ import * as THREE from 'three';
 import { gsap } from 'gsap';
 
 export class CoverFlow {
-  constructor(scene, items) {
+  constructor(scene, items, initialIndex = 0) {
     this.scene = scene;
     this.items = items;
-    this.index = 0;
-    this.position = 0;
-    this.targetPosition = 0;
+    this.index = Math.max(0, Math.min(items.length - 1, initialIndex));
+    this.position = this.index;
+    this.targetPosition = this.index;
     this.velocity = 0;
     this.meshes = [];
     this.reflections = [];
@@ -63,7 +63,8 @@ export class CoverFlow {
       gsap.set(reflection.position, { x, y: y - 3.22 * scale, z: z - 0.02 });
       gsap.set(reflection.rotation, { y: rotation });
       gsap.set(reflection.scale, { x: scale, y: -scale });
-      reflection.material.uniforms.uOpacity.value = visible ? Math.max(0.015, (1 - distance * 0.28) * 0.18) : 0;
+      const focus = Math.max(0, 1 - distance);
+      reflection.material.uniforms.uOpacity.value = visible ? (0.035 + focus * 0.22) : 0;
       reflection.visible = visible;
       reflection.renderOrder = Math.max(0, Math.round(10 - distance));
     });
