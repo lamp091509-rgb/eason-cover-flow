@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export function bindInteraction({ container, camera, renderer, flow, onFocus, onChange, onSelect }) {
+export function bindInteraction({ container, camera, renderer, flow, onFocus, onChange, onSelect, onUserGesture }) {
   const raycaster = new THREE.Raycaster();
   const pointer = new THREE.Vector2();
   let dragging = false;
@@ -11,7 +11,7 @@ export function bindInteraction({ container, camera, renderer, flow, onFocus, on
     pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
   };
-  const start = (event) => { dragging = true; lastX = startX = event.clientX; flow.targetPosition = flow.position; flow.velocity = 0; container.classList.add('is-dragging'); };
+  const start = (event) => { onUserGesture?.(); dragging = true; lastX = startX = event.clientX; flow.targetPosition = flow.position; flow.velocity = 0; container.classList.add('is-dragging'); };
   const move = (event) => {
     if (!dragging) return;
     const dx = event.clientX - lastX;
@@ -42,6 +42,6 @@ export function bindInteraction({ container, camera, renderer, flow, onFocus, on
   renderer.domElement.addEventListener('pointerdown', start);
   window.addEventListener('pointermove', move);
   window.addEventListener('pointerup', end);
-  renderer.domElement.addEventListener('wheel', (event) => { event.preventDefault(); flow.step(event.deltaY > 0 ? 1 : -1); }, { passive: false });
+  renderer.domElement.addEventListener('wheel', (event) => { event.preventDefault(); onUserGesture?.(); flow.step(event.deltaY > 0 ? 1 : -1); }, { passive: false });
   return () => { renderer.domElement.removeEventListener('pointerdown', start); window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', end); };
 }
